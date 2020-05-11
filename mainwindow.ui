@@ -68,7 +68,7 @@ p, li { white-space: pre-wrap; }
     </column>
     <column>
      <property name="text">
-      <string>Now Playing</string>
+      <string>URL</string>
      </property>
     </column>
    </widget>
@@ -92,7 +92,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

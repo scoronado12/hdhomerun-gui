@@ -1,10 +1,11 @@
 #include <iostream>
-#include <qdebug.h>
+#include <QDebug>
 #include <curl/curl.h>
 #include <string.h>
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include "channel.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -53,9 +54,6 @@ void MainWindow::on_connect_button_clicked()
         qDebug() << "CurlFailed" << endl;
     }
 
-    qDebug() << "Got json" << endl;
-    json = QString::fromStdString(jsonString);
-    qDebug() << json << endl;
 
 
     QJsonDocument lineup = QJsonDocument::fromJson(json.toUtf8());
@@ -64,13 +62,21 @@ void MainWindow::on_connect_button_clicked()
     //qDebug() << lineupObj[0].["GuideNumber"].toString();
 
     QJsonArray lineupArr = lineup.array();
-    int numChannels;
+    QVector <Channel> channels;
     for (int i = 0 ; i < lineupArr.count(); i++){
+        /*
         qDebug() << lineupArr.at(i)["GuideNumber"].toString();
-        qDebug() << lineupArr.at(i)["URL"].toString();
-        numChannels = i + 1;
+        qDebug() << lineupArr.at(i)["URL"].toString();*/
+
+
+        channels.push_front(Channel(lineupArr.at(i)["GuideName"].toString().toStdString(),
+                                    lineupArr.at(i)["GuideNumber"].toString().toStdString(),
+                                    lineupArr.at(i)["URL"].toString().toStdString()));
     }
-    qDebug() << "Populated list of " << numChannels << " channels."<< endl;
+
+
+    for (Channel c : channels)
+        qDebug() << QString::fromStdString(c.getChannelName()) << " " << QString::fromStdString(c.getNumber()) << endl;
 
 
 
