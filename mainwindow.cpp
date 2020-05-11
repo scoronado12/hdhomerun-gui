@@ -68,6 +68,7 @@ void MainWindow::on_connect_button_clicked()
     for (int i = 0 ; i < lineupArr.count(); i++){
         qDebug() << lineupArr.at(i)["GuideNumber"].toString();
         qDebug() << lineupArr.at(i)["URL"].toString();
+        numChannels = i + 1;
     }
     qDebug() << "Populated list of " << numChannels << " channels."<< endl;
 
