@@ -22,6 +22,9 @@ SOURCES += \
 HEADERS += \
     mainwindow.h
 
+LIBS +=\
+    -lcurl
+
 FORMS += \
     mainwindow.ui
 

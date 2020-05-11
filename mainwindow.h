@@ -1,7 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <iostream>
+#include <qdebug.h>
+#include <curl/curl.h>
+#include <string.h>
 #include <QMainWindow>
+#include "qtextedit.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,8 +19,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
+
+private slots:
+    void on_connect_button_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QTextEdit ip_addressbox;
+
 };
 #endif // MAINWINDOW_H
