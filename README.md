@@ -15,3 +15,17 @@ There is no native client on Linux, leaving Desktop users to install Kodi or any
 ## License
 
 GNU GPLv3
+
+# Building
+
+Download the sources.
+
+    git clone https://github.com/scoronado12/hdhomerun-gui
+
+Change into the working directory
+
+    cd ./hdhomerun-gui
+
+Run `make`
+
+    make
