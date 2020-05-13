@@ -7,6 +7,7 @@
 #include <string.h>
 #include <QMainWindow>
 #include <QTableWidget>
+#include <QPushButton>
 #include "qtextedit.h"
 
 QT_BEGIN_NAMESPACE
@@ -29,7 +30,10 @@ private:
     Ui::MainWindow *ui;
     QTextEdit ip_addressbox;
     QTableWidget channelTable;
+    QPushButton launchButton;
+
     enum channelColumns{ NUMBER, NAME, URL};
+
 
 };
 #endif // MAINWINDOW_H

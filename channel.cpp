@@ -3,7 +3,7 @@
 
 
 
-Channel::Channel(std::string stationId, std::string number, std::string url)
+Channel::Channel(std::string stationId, double number, std::string url)
 {
     this->stationId = stationId;
     this->number = number;
@@ -20,7 +20,7 @@ std::string Channel::getURL() const{
     return url;
 }
 
-std::string Channel::getNumber() const{
+double Channel::getNumber() const{
     return number;
 }
 

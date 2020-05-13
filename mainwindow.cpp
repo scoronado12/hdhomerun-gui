@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include <QDebug>
 #include <curl/curl.h>
 #include <string.h>
@@ -78,9 +79,8 @@ void MainWindow::on_connect_button_clicked()
                 lineupArr.at(i)["GuideNumber"].toString()<< " " <<
                 lineupArr.at(i)["URL"].toString() << endl;
 
-
-        channels.push_front(Channel(lineupArr.at(i)["GuideName"].toString().toStdString(),
-                                    lineupArr.at(i)["GuideNumber"].toString().toStdString(),
+        channels.push_back(Channel(lineupArr.at(i)["GuideName"].toString().toStdString(),
+                                    atof(lineupArr.at(i)["GuideNumber"].toString().toStdString().c_str()),
                                     lineupArr.at(i)["URL"].toString().toStdString()));
     }
 
@@ -89,17 +89,20 @@ void MainWindow::on_connect_button_clicked()
 
     for (Channel c : channels){
         qDebug() << QString::fromStdString(c.getChannelName()) << " "
-                 << QString::fromStdString(c.getNumber()) << " "
+                 << c.getNumber() << " "
                  << QString::fromStdString(c.getURL()) << endl;
-        //channelTable .insertRow()
     }
 
+    /* Insert Each Member of Channel into Table View */
     for (int i = 0 ; i < channels.size(); i++){
         ui->channelTable->insertRow(ui->channelTable->rowCount());
+
         ui->channelTable->setItem(ui->channelTable->rowCount() -1, NUMBER,
-                                  new QTableWidgetItem(QString::fromStdString(channels.at(i).getNumber())));
+                                  new QTableWidgetItem(QString::number(channels.at(i).getNumber())));
+
         ui->channelTable->setItem(ui->channelTable->rowCount()-1, NAME,
                                  new QTableWidgetItem(QString::fromStdString(channels.at(i).getChannelName())));
+
         ui->channelTable->setItem(ui->channelTable->rowCount()-1, URL,
                                  new QTableWidgetItem(QString::fromStdString(channels.at(i).getURL())));
     }

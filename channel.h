@@ -6,13 +6,13 @@
 class Channel
 {
 public:
-    Channel(std::string stationId, std::string number, std::string url);
+    Channel(std::string stationId, double number, std::string url);
     std::string getChannelName() const;
-    std::string getNumber() const;
+    double getNumber() const;
     std::string getURL() const;
 private:
     std::string stationId;
-    std::string number;
+    double number;
     std::string url;
 };
 
