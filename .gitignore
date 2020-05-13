@@ -1,6 +1,11 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 
+# qt and bin
+hdhomerun-gui
+moc_predefs.h
+
+
 *~
 *.autosave
 *.a

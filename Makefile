@@ -765,8 +765,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) $(TARGET) 
-	-$(DEL_FILE) .qmake.stash
-	-$(DEL_FILE) Makefile
 
 
 ####### Sub-libraries
