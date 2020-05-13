@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>806</width>
+    <height>597</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>806</width>
+    <height>597</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>806</width>
+    <height>800</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>HDHomeRun</string>
@@ -51,10 +63,25 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>60</y>
+      <y>80</y>
       <width>781</width>
       <height>481</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>481</height>
+     </size>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="sortingEnabled">
+     <bool>true</bool>
     </property>
     <column>
      <property name="text">
@@ -68,11 +95,11 @@ p, li { white-space: pre-wrap; }
     </column>
     <column>
      <property name="text">
-      <string>Now Playing</string>
+      <string>Stream URL</string>
      </property>
     </column>
    </widget>
-   <widget class="QPushButton" name="view_channel_button">
+   <widget class="QPushButton" name="launchButton">
     <property name="geometry">
      <rect>
       <x>690</x>
@@ -86,29 +113,7 @@ p, li { white-space: pre-wrap; }
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionExit"/>
-   </widget>
-   <addaction name="menuFile"/>
-  </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionExit">
-   <property name="text">
-    <string>Exit</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>

@@ -6,7 +6,9 @@
 #include <curl/curl.h>
 #include <string.h>
 #include <QMainWindow>
-#include "qtextedit.h"
+#include <QTableWidget>
+#include <QPushButton>
+#include <QTextEdit>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,11 +24,21 @@ public:
     static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
 
 private slots:
+
     void on_connect_button_clicked();
+
+    void on_launchButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;
     QTextEdit ip_addressbox;
+    QTableWidget channelTable;
+    QPushButton launchButton;
+
+
+    enum channelColumns{ NUMBER, NAME, URL};
+
 
 };
 #endif // MAINWINDOW_H
