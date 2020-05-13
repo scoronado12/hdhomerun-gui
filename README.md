@@ -1,10 +1,16 @@
 # hdhomerun-gui
 
-Third Party HD HomeRun Client made in QT
+Third Party HD HomeRun Client made in QT. It is able to pull down Channel data via HTTP GET requests that are publically avaliable
 
 ## Why?
 
-Some people use the HD Homerun and want to have a simple client that works on their desktop Linux machine.
+There is no native client on Linux, leaving Desktop users to install Kodi or any other PVR client to simply watch TV.
+
+# Dependencies
+
+- QT 5
+- mpv Media Player
+- glibc
 
 ## License
 
