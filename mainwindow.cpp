@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <QDebug>
 #include <curl/curl.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include <string.h>
 #include <QJsonObject>
@@ -35,19 +36,7 @@ size_t MainWindow::WriteCallback(void *contents, size_t size, size_t nmemb, void
     return size * nmemb;
 }
 
-void MainWindow::on_launch_button_clicked(){
-    qDebug() << "Clicked Launch Button" << endl;
 
-    int fd = fork();
-
-    if (fd == 0){
-
-    }else {
-        qDebug() << "Fork Failed!" << endl;
-    }
-
-
-}
 
 /**
  * @brief MainWindow::on_connect_button_clicked
@@ -57,6 +46,10 @@ void MainWindow::on_launch_button_clicked(){
 void MainWindow::on_connect_button_clicked()
 {
     qDebug() << "Clicked button\n";
+
+    for (int i = ui->channelTable->rowCount(); i >= 0; i--){
+        ui->channelTable->removeRow(i);
+    }
     QString ip_address = ui->ip_addressbox->document()->toPlainText();
 
     QString url = "http://" + ip_address + "/lineup.json";
@@ -85,7 +78,6 @@ void MainWindow::on_connect_button_clicked()
 
 
     QJsonArray lineupArr = lineup.array();
-    qDebug() << lineupArr.at(0).toString() << endl;
     QVector <Channel> channels;
     for (int i = 0 ; i < lineupArr.count(); i++){
         /*
@@ -97,15 +89,15 @@ void MainWindow::on_connect_button_clicked()
                                     atof(lineupArr.at(i)["GuideNumber"].toString().toStdString().c_str()),
                                     lineupArr.at(i)["URL"].toString().toStdString()));
     }
-/*
-    qDebug() << " ----" << endl;
+
+
     qDebug() << "Channel Name " << "Channel Number " << "URL " << endl;
 
     for (Channel c : channels){
         qDebug() << QString::fromStdString(c.getChannelName()) << " "
                  << c.getNumber() << " "
                  << QString::fromStdString(c.getURL()) << endl;
-    }*/
+    }
 
     /* Insert Each Member of Channel into Table View */
     for (int i = 0 ; i < channels.size(); i++){
@@ -121,7 +113,40 @@ void MainWindow::on_connect_button_clicked()
                                  new QTableWidgetItem(QString::fromStdString(channels.at(i).getURL())));
     }
 
+    qDebug() << "Found " << channels.size() << " channels." << endl;
 
 
+
+}
+
+void MainWindow::on_launchButton_clicked()
+{
+    qDebug() << "Clicked Launch Button" << endl;
+    if (ui->channelTable->rowCount() == 0)
+        return void();
+
+    QList<QTableWidgetItem *> qi = ui->channelTable->selectedItems();
+    std::string selectedUrl = qi.at(URL)->text().toStdString();
+
+
+    int fd = fork();
+    qDebug() << fd << endl;
+    if (fd < 0){
+        qDebug() << "Fork Failed!\n";
+        return void();
+    }
+
+    if (fd == 0){
+        char *mpvArgs[] = {(char *)"mpv", (char *)selectedUrl.c_str(), NULL};
+        int rc = execvp(mpvArgs[0], mpvArgs);
+        if (rc < 0){
+            qDebug() << "Exec Failed! Is MPV not installed?" << endl;
+        }
+
+    }
+
+    selectedUrl.clear();
+
+    wait(NULL);
 
 }

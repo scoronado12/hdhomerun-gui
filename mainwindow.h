@@ -26,7 +26,9 @@ public:
 private slots:
 
     void on_connect_button_clicked();
-    void on_launch_button_clicked();
+
+    void on_launchButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;
