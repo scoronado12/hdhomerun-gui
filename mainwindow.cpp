@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <QDebug>
 #include <curl/curl.h>
+#include <unistd.h>
 #include <string.h>
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -20,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->channelTable->verticalHeader()->hide();
     ui->channelTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->channelTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 MainWindow::~MainWindow()
@@ -33,11 +35,27 @@ size_t MainWindow::WriteCallback(void *contents, size_t size, size_t nmemb, void
     return size * nmemb;
 }
 
+void MainWindow::on_launch_button_clicked(){
+    qDebug() << "Clicked Launch Button" << endl;
 
+    int fd = fork();
+
+    if (fd == 0){
+
+    }else {
+        qDebug() << "Fork Failed!" << endl;
+    }
+
+
+}
+
+/**
+ * @brief MainWindow::on_connect_button_clicked
+ * This function makes an HTTP GET request using curl and populates the table with JSON data
+ */
 
 void MainWindow::on_connect_button_clicked()
 {
-    //USE libcurl to download the file
     qDebug() << "Clicked button\n";
     QString ip_address = ui->ip_addressbox->document()->toPlainText();
 
@@ -62,28 +80,24 @@ void MainWindow::on_connect_button_clicked()
         qDebug() << "CurlFailed" << endl;
     }
 
-    //std::cout << jsonString << "\n";
-
     json = QString::fromStdString(jsonString);
-    //todo looking here for conversion
     QJsonDocument lineup = QJsonDocument::fromJson(json.toUtf8());
 
-    //qDebug() << lineup. << endl;
 
     QJsonArray lineupArr = lineup.array();
     qDebug() << lineupArr.at(0).toString() << endl;
     QVector <Channel> channels;
     for (int i = 0 ; i < lineupArr.count(); i++){
-
+        /*
         qDebug() << lineupArr.at(i)["GuideName"].toString() << " " <<
                 lineupArr.at(i)["GuideNumber"].toString()<< " " <<
                 lineupArr.at(i)["URL"].toString() << endl;
-
+        */
         channels.push_back(Channel(lineupArr.at(i)["GuideName"].toString().toStdString(),
                                     atof(lineupArr.at(i)["GuideNumber"].toString().toStdString().c_str()),
                                     lineupArr.at(i)["URL"].toString().toStdString()));
     }
-
+/*
     qDebug() << " ----" << endl;
     qDebug() << "Channel Name " << "Channel Number " << "URL " << endl;
 
@@ -91,7 +105,7 @@ void MainWindow::on_connect_button_clicked()
         qDebug() << QString::fromStdString(c.getChannelName()) << " "
                  << c.getNumber() << " "
                  << QString::fromStdString(c.getURL()) << endl;
-    }
+    }*/
 
     /* Insert Each Member of Channel into Table View */
     for (int i = 0 ; i < channels.size(); i++){
@@ -108,12 +122,6 @@ void MainWindow::on_connect_button_clicked()
     }
 
 
-
-
-
-
-
-    //TODO populate channel list
 
 
 }
