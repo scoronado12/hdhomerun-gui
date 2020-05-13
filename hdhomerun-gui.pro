@@ -30,8 +30,6 @@ LIBS +=\
 FORMS += \
     mainwindow.ui
 
-CONFIG += \
-    console
 
 TRANSLATIONS += \
     hdhomerun-gui_en_US.ts

@@ -6,6 +6,7 @@
 #include <curl/curl.h>
 #include <string.h>
 #include <QMainWindow>
+#include <QTableWidget>
 #include "qtextedit.h"
 
 QT_BEGIN_NAMESPACE
@@ -27,6 +28,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QTextEdit ip_addressbox;
+    QTableWidget channelTable;
+    enum channelColumns{ NUMBER, NAME, URL};
 
 };
 #endif // MAINWINDOW_H

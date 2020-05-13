@@ -10,17 +10,17 @@ Channel::Channel(std::string stationId, std::string number, std::string url)
     this->url = url;
 }
 
-std::string Channel::getChannelName(){
+std::string Channel::getChannelName() const{
     return stationId;
 }
 
 
 
-std::string Channel::getURL(){
+std::string Channel::getURL() const{
     return url;
 }
 
-std::string Channel::getNumber(){
+std::string Channel::getNumber() const{
     return number;
 }
 

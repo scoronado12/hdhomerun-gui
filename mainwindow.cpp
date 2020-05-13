@@ -5,6 +5,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QTableWidget>
 #include "channel.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -16,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     ui->setupUi(this);
+    ui->channelTable->verticalHeader()->hide();
+    ui->channelTable->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 MainWindow::~MainWindow()
@@ -34,17 +37,21 @@ size_t MainWindow::WriteCallback(void *contents, size_t size, size_t nmemb, void
 void MainWindow::on_connect_button_clicked()
 {
     //USE libcurl to download the file
+    qDebug() << "Clicked button\n";
     QString ip_address = ui->ip_addressbox->document()->toPlainText();
 
     QString url = "http://" + ip_address + "/lineup.json";
+    qDebug() << "URL: " << url << endl;
     std::string cppUrl = url.toStdString();
     const char *cStyleURL = cppUrl.c_str();
     std::string jsonString;
     QString json;
     CURL *curl_handle = curl_easy_init();
     CURLcode response;
+
     if(curl_handle){
         /*TODO - replace with global IP address value*/
+        qDebug() << cStyleURL << endl;
         curl_easy_setopt(curl_handle, CURLOPT_URL, cStyleURL);
         curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, &jsonString);
@@ -54,19 +61,22 @@ void MainWindow::on_connect_button_clicked()
         qDebug() << "CurlFailed" << endl;
     }
 
+    //std::cout << jsonString << "\n";
 
-
+    json = QString::fromStdString(jsonString);
+    //todo looking here for conversion
     QJsonDocument lineup = QJsonDocument::fromJson(json.toUtf8());
-    //QJsonObject lineupObj = lineup.object();
 
-    //qDebug() << lineupObj[0].["GuideNumber"].toString();
+    //qDebug() << lineup. << endl;
 
     QJsonArray lineupArr = lineup.array();
+    qDebug() << lineupArr.at(0).toString() << endl;
     QVector <Channel> channels;
     for (int i = 0 ; i < lineupArr.count(); i++){
-        /*
-        qDebug() << lineupArr.at(i)["GuideNumber"].toString();
-        qDebug() << lineupArr.at(i)["URL"].toString();*/
+
+        qDebug() << lineupArr.at(i)["GuideName"].toString() << " " <<
+                lineupArr.at(i)["GuideNumber"].toString()<< " " <<
+                lineupArr.at(i)["URL"].toString() << endl;
 
 
         channels.push_front(Channel(lineupArr.at(i)["GuideName"].toString().toStdString(),
@@ -74,10 +84,25 @@ void MainWindow::on_connect_button_clicked()
                                     lineupArr.at(i)["URL"].toString().toStdString()));
     }
 
+    qDebug() << " ----" << endl;
+    qDebug() << "Channel Name " << "Channel Number " << "URL " << endl;
 
-    for (Channel c : channels)
-        qDebug() << QString::fromStdString(c.getChannelName()) << " " << QString::fromStdString(c.getNumber()) << endl;
+    for (Channel c : channels){
+        qDebug() << QString::fromStdString(c.getChannelName()) << " "
+                 << QString::fromStdString(c.getNumber()) << " "
+                 << QString::fromStdString(c.getURL()) << endl;
+        //channelTable .insertRow()
+    }
 
+    for (int i = 0 ; i < channels.size(); i++){
+        ui->channelTable->insertRow(ui->channelTable->rowCount());
+        ui->channelTable->setItem(ui->channelTable->rowCount() -1, NUMBER,
+                                  new QTableWidgetItem(QString::fromStdString(channels.at(i).getNumber())));
+        ui->channelTable->setItem(ui->channelTable->rowCount()-1, NAME,
+                                 new QTableWidgetItem(QString::fromStdString(channels.at(i).getChannelName())));
+        ui->channelTable->setItem(ui->channelTable->rowCount()-1, URL,
+                                 new QTableWidgetItem(QString::fromStdString(channels.at(i).getURL())));
+    }
 
 
 
