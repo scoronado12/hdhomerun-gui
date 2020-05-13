@@ -147,6 +147,4 @@ void MainWindow::on_launchButton_clicked()
 
     selectedUrl.clear();
 
-    wait(NULL);
-
 }
