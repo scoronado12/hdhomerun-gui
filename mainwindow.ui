@@ -82,9 +82,9 @@
    <widget class="QPushButton" name="launchButton">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>677</x>
       <y>20</y>
-      <width>88</width>
+      <width>101</width>
       <height>34</height>
      </rect>
     </property>

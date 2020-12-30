@@ -12,12 +12,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->channelTable->verticalHeader()->hide();
     ui->channelTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->channelTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
+
+
 
 size_t MainWindow::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
@@ -91,7 +96,7 @@ void MainWindow::on_connect_button_clicked()
         response = curl_easy_perform(curl_handle);
 
     } else {
-        qDebug() << "CurlFailed" << Qt::endl;
+        qDebug() << "Curl Failed" << Qt::endl;
     }
 
     json = QString::fromStdString(jsonString);
