@@ -1,6 +1,7 @@
-#include "channel.h"
-#include <string.h>
+#ifndef CHANNEL_CPP
+#define CHANNEL_CPP
 
+#include "channel.h"
 
 
 Channel::Channel(std::string stationId, double number, std::string url)
@@ -24,3 +25,4 @@ double Channel::getNumber() const{
     return number;
 }
 
+#endif //CHANNEL_CPP
