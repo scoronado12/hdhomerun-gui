@@ -114,10 +114,10 @@ void MainWindow::on_connect_button_clicked()
 
     qDebug() << "Channel Name " << "Channel Number " << "URL " << Qt::endl;
 
-    for (Channel c : channels){
-        qDebug() << QString::fromStdString(c.getChannelName()) << " "
-                 << c.getNumber() << " "
-                 << QString::fromStdString(c.getURL()) << Qt::endl;
+    for (int i = 0; i < channels.size(); i++){
+        qDebug() << QString::fromStdString(channels.at(i).getChannelName()) << " "
+                 << channels.at(i).getNumber() << " "
+                 << QString::fromStdString(channels.at(i).getURL()) << Qt::endl;
     }
 
      //Insert Each Member of Channel into Table view

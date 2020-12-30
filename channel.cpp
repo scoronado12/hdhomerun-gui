@@ -1,3 +1,5 @@
+#ifndef CHANNEL_CPP
+#define CHANNEL_CPP
 
 #include "channel.h"
 
@@ -23,3 +25,4 @@ double Channel::getNumber() const{
     return number;
 }
 
+#endif //CHANNEL_CPP
