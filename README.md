@@ -11,6 +11,8 @@ There is no native client on Linux, leaving Desktop users to install Kodi or any
 - QT 5
 - mpv Media Player
 - glibc
+- curl
+- libhdhomerun
 
 ## License
 
