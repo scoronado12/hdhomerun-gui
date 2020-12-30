@@ -1,15 +1,21 @@
+#include <iostream>
+#include <stdlib.h>
+#include <QDebug>
+#include <curl/curl.h>
+#include <sys/wait.h>
+#include <unistd.h>
+#include <string.h>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QTableWidget>
+#include <QMainWindow>
+#include <libhdhomerun/hdhomerun.h>
+#include "channel.h"
+
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
-#include <iostream>
-#include <qdebug.h>
-#include <curl/curl.h>
-#include <string.h>
-#include <QMainWindow>
-#include <QTableWidget>
-#include <QPushButton>
-#include <QTextEdit>
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,7 +41,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QTableWidget channelTable;
-    QPushButton launchButton;
 
     enum channelColumns{ NUMBER, NAME, URL};
 

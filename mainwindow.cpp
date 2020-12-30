@@ -1,16 +1,4 @@
-#include <iostream>
-#include <stdlib.h>
-#include <QDebug>
-#include <curl/curl.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <string.h>
-#include <QJsonObject>
-#include <QJsonDocument>
-#include <QJsonArray>
-#include <QTableWidget>
-#include <libhdhomerun/hdhomerun.h>
-#include "channel.h"
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 

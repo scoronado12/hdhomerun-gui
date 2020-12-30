@@ -1,7 +1,9 @@
+#include <iostream>
+#include <string.h>
+
 #ifndef CHANNEL_H
 #define CHANNEL_H
 
-#include <string>
 
 class Channel
 {

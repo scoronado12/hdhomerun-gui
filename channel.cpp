@@ -1,6 +1,5 @@
-#include "channel.h"
-#include <string.h>
 
+#include "channel.h"
 
 
 Channel::Channel(std::string stationId, double number, std::string url)
