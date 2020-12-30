@@ -25,7 +25,8 @@ HEADERS += \
     mainwindow.h
 
 LIBS +=\
-    -lcurl
+    -lcurl \
+    -lhdhomerun
 
 FORMS += \
     mainwindow.ui

@@ -10,6 +10,7 @@
 #include <QPushButton>
 #include <QTextEdit>
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -22,20 +23,19 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
+    QString targetURL;
 
 private slots:
 
     void on_connect_button_clicked();
-
+    int auto_connect();
     void on_launchButton_clicked();
 
 
 private:
     Ui::MainWindow *ui;
-    QTextEdit ip_addressbox;
     QTableWidget channelTable;
     QPushButton launchButton;
-
 
     enum channelColumns{ NUMBER, NAME, URL};
 
