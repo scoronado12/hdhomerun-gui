@@ -10,7 +10,6 @@
 #include <QJsonArray>
 #include <QTableWidget>
 #include <libhdhomerun/hdhomerun.h>
-#include <arpa/inet.h>
 #include "channel.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
