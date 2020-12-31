@@ -55,7 +55,7 @@ int MainWindow::auto_connect()
     hdhomerun_discover_device_t device = foundDevices[0];
 
     targetURL = (QString) device.base_url;
-    qDebug() << "URL" << device.ip_addr << Qt::endl;
+    qDebug() << "URL" << device.base_url << Qt::endl;
 
 
 
