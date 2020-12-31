@@ -48,14 +48,14 @@ int MainWindow::auto_connect()
     int nDevices = hdhomerun_discover_find_devices_custom_v2(0, HDHOMERUN_DEVICE_TYPE_TUNER, HDHOMERUN_DEVICE_ID_WILDCARD, foundDevices, 10);
 
     if (nDevices <= 0){
-        qDebug() << "Device Not Found" << Qt::endl;
+        qDebug() << "Device Not Found" << "\n";
         return 1;
     }
 
     hdhomerun_discover_device_t device = foundDevices[0];
 
     targetURL = (QString) device.base_url;
-    qDebug() << "URL" << device.base_url << Qt::endl;
+    qDebug() << "URL" << device.base_url << "\n";
 
 
 
@@ -80,7 +80,7 @@ void MainWindow::on_connect_button_clicked()
         ui->channelTable->removeRow(i);
     }
     QString url = targetURL+ "/lineup.json";
-    qDebug() << "URL: " << url << Qt::endl;
+    qDebug() << "URL: " << url << "\n";
     std::string cppUrl = url.toStdString();
     const char *cStyleURL = cppUrl.c_str();
     std::string jsonString;
@@ -89,14 +89,14 @@ void MainWindow::on_connect_button_clicked()
     CURLcode response;
 
     if(curl_handle){
-        qDebug() << cStyleURL << Qt::endl;
+        qDebug() << cStyleURL << "\n";
         curl_easy_setopt(curl_handle, CURLOPT_URL, cStyleURL);
         curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, &jsonString);
         response = curl_easy_perform(curl_handle);
 
     } else {
-        qDebug() << "Curl Failed" << Qt::endl;
+        qDebug() << "Curl Failed" << "\n";
     }
 
     json = QString::fromStdString(jsonString);
@@ -104,12 +104,12 @@ void MainWindow::on_connect_button_clicked()
 
 
     QJsonArray lineupArr = lineup.array();
-    QVector <Channel> channels;
+    std::vector <Channel> channels;
     for (int i = 0 ; i < lineupArr.count(); i++){
 
         qDebug() << lineupArr.at(i)["GuideName"].toString() << " " <<
                 lineupArr.at(i)["GuideNumber"].toString()<< " " <<
-                lineupArr.at(i)["URL"].toString() << Qt::endl;
+                lineupArr.at(i)["URL"].toString() << "\n";
 
         channels.push_back(Channel(lineupArr.at(i)["GuideName"].toString().toStdString(),
                                     atof(lineupArr.at(i)["GuideNumber"].toString().toStdString().c_str()),
@@ -117,12 +117,12 @@ void MainWindow::on_connect_button_clicked()
     }
 
 
-    qDebug() << "Channel Name " << "Channel Number " << "URL " << Qt::endl;
+    qDebug() << "Channel Name " << "Channel Number " << "URL " << "\n";
 
     for (int i = 0; i < channels.size(); i++){
         qDebug() << QString::fromStdString(channels.at(i).getChannelName()) << " "
                  << channels.at(i).getNumber() << " "
-                 << QString::fromStdString(channels.at(i).getURL()) << Qt::endl;
+                 << QString::fromStdString(channels.at(i).getURL()) << "\n";
     }
 
      //Insert Each Member of Channel into Table view
@@ -139,7 +139,7 @@ void MainWindow::on_connect_button_clicked()
                                  new QTableWidgetItem(QString::fromStdString(channels.at(i).getURL())));
     }
 
-    qDebug() << "Found " << channels.size() << " channels." << Qt::endl;
+    qDebug() << "Found " << channels.size() << " channels." << "\n";
 
 
 
@@ -147,7 +147,7 @@ void MainWindow::on_connect_button_clicked()
 
 void MainWindow::on_launchButton_clicked()
 {
-    qDebug() << "Clicked Launch Button" << Qt::endl;
+    qDebug() << "Clicked Launch Button" << "\n";
     if (ui->channelTable->rowCount() == 0)
         return void();
 
@@ -156,7 +156,7 @@ void MainWindow::on_launchButton_clicked()
 
 
     int fd = fork();
-    qDebug() << fd << Qt::endl;
+    qDebug() << fd << "\n";
     if (fd < 0){
         qDebug() << "Fork Failed!\n";
         return void();
@@ -166,7 +166,7 @@ void MainWindow::on_launchButton_clicked()
         char *mpvArgs[] = {(char *)"mpv", (char *)selectedUrl.c_str(), NULL};
         int rc = execvp(mpvArgs[0], mpvArgs);
         if (rc < 0){
-            qDebug() << "Exec Failed! Is MPV not installed?" << Qt::endl;
+            qDebug() << "Exec Failed! Is MPV not installed?" << "\n";
         }
 
     }
