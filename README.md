@@ -30,7 +30,12 @@ Download the sources.
 Change into the working directory
 
     cd ./hdhomerun-gui
+    
+Run `qmake` to generate a makefile
 
-Run `make`
+    qmake
+
+
+Lastly, run `make`
 
     make
