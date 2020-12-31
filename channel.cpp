@@ -1,7 +1,9 @@
+
+#include "channel.h"
+
 #ifndef CHANNEL_CPP
 #define CHANNEL_CPP
 
-#include "channel.h"
 
 
 Channel::Channel(std::string stationId, double number, std::string url)
