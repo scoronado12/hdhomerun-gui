@@ -4,7 +4,7 @@
 # qt and bin
 hdhomerun-gui
 moc_predefs.h
-
+Makefile
 
 *~
 *.autosave
