@@ -55,10 +55,7 @@ int MainWindow::auto_connect()
     hdhomerun_discover_device_t device = foundDevices[0];
 
     targetURL = (QString) device.base_url;
-    qDebug() << "URL" << device.base_url << "\n";
-
-
-
+    qDebug() << "Connected to Device" << device.base_url << "\n";
 
     return 0;
 }
@@ -80,7 +77,6 @@ void MainWindow::on_connect_button_clicked()
         ui->channelTable->removeRow(i);
     }
     QString url = targetURL+ "/lineup.json";
-    qDebug() << "URL: " << url << "\n";
     std::string cppUrl = url.toStdString();
     const char *cStyleURL = cppUrl.c_str();
     std::string jsonString;
@@ -105,13 +101,12 @@ void MainWindow::on_connect_button_clicked()
 
     QJsonArray lineupArr = lineup.array();
     std::vector <Channel> channels;
-    qDebug() << "Channel Name " << "Channel Number " << "URL " << "\n";
 
     for (int i = 0 ; i < lineupArr.count(); i++){
         
-        qDebug() << [FOUND] << lineupArr.at(i)["GuideName"].toString() << " " <<
-                lineupArr.at(i)["GuideNumber"].toString()<< " " <<
-                lineupArr.at(i)["URL"].toString();
+        qDebug() << "[FOUND CHANNEL]" << lineupArr.at(i)["GuideNumber"].toString()
+            << lineupArr.at(i)["GuideName"].toString() << " " <<
+            lineupArr.at(i)["URL"].toString();
 
         channels.push_back(Channel(lineupArr.at(i)["GuideName"].toString().toStdString(),
                                     atof(lineupArr.at(i)["GuideNumber"].toString().toStdString().c_str()),
