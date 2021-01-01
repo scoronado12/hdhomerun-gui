@@ -105,28 +105,18 @@ void MainWindow::on_connect_button_clicked()
 
     QJsonArray lineupArr = lineup.array();
     std::vector <Channel> channels;
-    for (int i = 0 ; i < lineupArr.count(); i++){
+    qDebug() << "Channel Name " << "Channel Number " << "URL " << "\n";
 
-        qDebug() << lineupArr.at(i)["GuideName"].toString() << " " <<
+    for (int i = 0 ; i < lineupArr.count(); i++){
+        
+        qDebug() << [FOUND] << lineupArr.at(i)["GuideName"].toString() << " " <<
                 lineupArr.at(i)["GuideNumber"].toString()<< " " <<
-                lineupArr.at(i)["URL"].toString() << "\n";
+                lineupArr.at(i)["URL"].toString();
 
         channels.push_back(Channel(lineupArr.at(i)["GuideName"].toString().toStdString(),
                                     atof(lineupArr.at(i)["GuideNumber"].toString().toStdString().c_str()),
                                     lineupArr.at(i)["URL"].toString().toStdString()));
-    }
 
-
-    qDebug() << "Channel Name " << "Channel Number " << "URL " << "\n";
-
-    for (int i = 0; i < channels.size(); i++){
-        qDebug() << QString::fromStdString(channels.at(i).getChannelName()) << " "
-                 << channels.at(i).getNumber() << " "
-                 << QString::fromStdString(channels.at(i).getURL()) << "\n";
-    }
-
-     //Insert Each Member of Channel into Table view
-    for (int i = 0 ; i < channels.size(); i++){
         ui->channelTable->insertRow(ui->channelTable->rowCount());
 
         ui->channelTable->setItem(ui->channelTable->rowCount() -1, NUMBER,
@@ -137,6 +127,7 @@ void MainWindow::on_connect_button_clicked()
 
         ui->channelTable->setItem(ui->channelTable->rowCount()-1, URL,
                                  new QTableWidgetItem(QString::fromStdString(channels.at(i).getURL())));
+
     }
 
     qDebug() << "Found " << channels.size() << " channels." << "\n";
@@ -156,7 +147,6 @@ void MainWindow::on_launchButton_clicked()
 
 
     int fd = fork();
-    qDebug() << fd << "\n";
     if (fd < 0){
         qDebug() << "Fork Failed!\n";
         return void();
