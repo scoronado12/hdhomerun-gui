@@ -1,7 +1,6 @@
 
 #include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
-#include "headers/hdhomerun_wrapper.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -37,13 +36,13 @@ size_t MainWindow::WriteCallback(void *contents, size_t size, size_t nmemb, void
  * @returns 0 if success
  */
 
-int MainWindow::auto_connect()
+HDHomeRun_Wrapper MainWindow::auto_connect()
 {
 
     HDHomeRun_Wrapper device = HDHomeRun_Wrapper();
     targetURL = "http://" + QString::fromStdString(device.getDeviceIPAddress()); 
 
-    return 0;
+    return device;
 }
 
 
@@ -56,12 +55,12 @@ int MainWindow::auto_connect()
 void MainWindow::on_connect_button_clicked()
 {
     qDebug() << "Clicked button\n";
-    auto_connect();
 
 
     for (int i = ui->channelTable->rowCount(); i >= 0; i--){
         ui->channelTable->removeRow(i);
     }
+/*  
     QString url = targetURL + "/lineup.json";
     std::string cppUrl = url.toStdString();
     const char *cStyleURL = cppUrl.c_str();
@@ -87,18 +86,11 @@ void MainWindow::on_connect_button_clicked()
 
     QJsonArray lineupArr = lineup.array();
     std::vector <Channel> channels;
-
-    for (int i = 0 ; i < lineupArr.count(); i++){
+*/
+    std::vector <Channel>  channels = auto_connect().getChannels();
+    for (int i = 0 ; i < channels.size(); i++){
         
-        qDebug() << "[FOUND CHANNEL]" << lineupArr.at(i)["GuideNumber"].toString()
-            << lineupArr.at(i)["GuideName"].toString() << " " <<
-            lineupArr.at(i)["URL"].toString();
-
-        channels.push_back(Channel(lineupArr.at(i)["GuideName"].toString().toStdString(),
-                                    atof(lineupArr.at(i)["GuideNumber"].toString().toStdString().c_str()),
-                                    lineupArr.at(i)["URL"].toString().toStdString()));
-
-        ui->channelTable->insertRow(ui->channelTable->rowCount());
+         ui->channelTable->insertRow(ui->channelTable->rowCount());
 
         ui->channelTable->setItem(ui->channelTable->rowCount() -1, NUMBER,
                                   new QTableWidgetItem(QString::number(channels.at(i).getNumber())));

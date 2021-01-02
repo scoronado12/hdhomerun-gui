@@ -1,6 +1,11 @@
 #include <iostream>
 #include <string>
+#include <curl/curl.h>
+#include <QJsonObject>
 #include <libhdhomerun/hdhomerun.h>
+#include "channel.h"
+
+
 #ifndef HDHOMERUN_WRAPPER_H
 #define HDHOMERUN_WRAPPER_H
 
@@ -17,6 +22,9 @@ public:
     std::string getDeviceAuth();
     std::string getBaseUrl();
     std::string toString();
+    std::vector<Channel> getChannels();
+    static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
+
 private:
         std::string deviceBaseUrl;
         std::string deviceIPAddress;
@@ -26,7 +34,7 @@ private:
         bool isLegacy;
         std::string deviceAuth;
         std::string baseUrl;
-        //std::vector<Channel> channels; 
+        std::vector<Channel> channels; 
      
 
 };
