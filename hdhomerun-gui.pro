@@ -21,8 +21,8 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
-    channel.h \
-    mainwindow.h
+    headers/channel.h \
+    headers/mainwindow.h
 
 LIBS +=\
     -lcurl \
