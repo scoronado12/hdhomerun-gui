@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
 #include <libhdhomerun/hdhomerun.h>
-#ifndef HDHOMERUN_DEVICE_H
-#define HDHOMERUN_DEVICE_H
+#ifndef HDHOMERUN_WRAPPER_H
+#define HDHOMERUN_WRAPPER_H
 
-class HDHomeRun_Device
+class HDHomeRun_Wrapper
 {
 public:
-    HDHomeRun_Device();
+    HDHomeRun_Wrapper();
     std::string getDeviceBaseURL();
     std::string getDeviceId();
     std::string getDeviceIPAddress();
@@ -34,4 +34,4 @@ private:
 
 
 
-#endif // HDHOMERUN_DEVICE_H
+#endif // HDHOMERUN_WRAPPER_H

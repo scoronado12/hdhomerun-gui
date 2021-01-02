@@ -1,14 +1,14 @@
-#include "headers/hdhomerun_device.h"
+#include "headers/hdhomerun_wrapper.h"
 
-#ifndef HDHOMERUN_DEVICE_CPP
-#define HDHOMERUN_DEVICE_CPP
+#ifndef HDHOMERUN_WRAPPER_CPP
+#define HDHOMERUN_WRAPPER_CPP
 
 #define HOW_MANY 1
 
-HDHomeRun_Device::HDHomeRun_Device()
+HDHomeRun_Wrapper::HDHomeRun_Wrapper()
 {
    
-    struct hdhomerun_discover_device_t device[1] {};
+    struct hdhomerun_discover_device_t device[1];
     int nDevice = hdhomerun_discover_find_devices_custom_v2(0, 
             HDHOMERUN_DEVICE_TYPE_TUNER,
             HDHOMERUN_DEVICE_ID_WILDCARD, 
@@ -37,36 +37,36 @@ HDHomeRun_Device::HDHomeRun_Device()
     this->deviceId = std::to_string((int) device[0].device_id);
 } 
 
-std::string HDHomeRun_Device::getDeviceBaseURL()
+std::string HDHomeRun_Wrapper::getDeviceBaseURL()
 {
     return deviceBaseUrl;
 }
 
-std::string HDHomeRun_Device::getDeviceIPAddress(){
+std::string HDHomeRun_Wrapper::getDeviceIPAddress(){
    return deviceIPAddress;
 }
-std::string HDHomeRun_Device::getDeviceId()
+std::string HDHomeRun_Wrapper::getDeviceId()
 {
     return deviceId;
 }
-std::string HDHomeRun_Device::getDeviceType()
+std::string HDHomeRun_Wrapper::getDeviceType()
 {
     return deviceType;
 }
-bool HDHomeRun_Device::getIsLegacy()
+bool HDHomeRun_Wrapper::getIsLegacy()
 {
     return isLegacy;
 }
-std::string HDHomeRun_Device::getDeviceAuth()
+std::string HDHomeRun_Wrapper::getDeviceAuth()
 {
     return deviceAuth;
 }
-std::string HDHomeRun_Device::getBaseUrl()
+std::string HDHomeRun_Wrapper::getBaseUrl()
 {
     return baseUrl;
 }
 
-std::string HDHomeRun_Device::toString()
+std::string HDHomeRun_Wrapper::toString()
 {
     return deviceBaseUrl + "|" + 
         deviceIPAddress + "|" +

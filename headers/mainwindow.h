@@ -10,7 +10,6 @@
 #include <QJsonArray>
 #include <QTableWidget>
 #include <QMainWindow>
-#include <libhdhomerun/hdhomerun.h>
 #include "channel.h"
 
 

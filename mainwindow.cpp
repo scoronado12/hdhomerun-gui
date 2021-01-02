@@ -1,7 +1,7 @@
 
 #include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "headers/hdhomerun_wrapper.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -35,27 +35,13 @@ size_t MainWindow::WriteCallback(void *contents, size_t size, size_t nmemb, void
  * This function makes an attempt to connect with one of the Tuners on the network.
  *
  * @returns 0 if success
- * @returns 1 if not found
  */
 
 int MainWindow::auto_connect()
 {
 
-
-    struct hdhomerun_discover_device_t foundDevices[5] = {};
-
-    //int numDevices = hdhomerun_discover_find_devices_custom_v2();
-    int nDevices = hdhomerun_discover_find_devices_custom_v2(0, HDHOMERUN_DEVICE_TYPE_TUNER, HDHOMERUN_DEVICE_ID_WILDCARD, foundDevices, 10);
-
-    if (nDevices <= 0){
-        qDebug() << "Device Not Found" << "\n";
-        return 1;
-    }
-
-    hdhomerun_discover_device_t device = foundDevices[0];
-
-    targetURL = (QString) device.base_url;
-    qDebug() << "Connected to Device" << device.base_url << "\n";
+    HDHomeRun_Wrapper device = HDHomeRun_Wrapper();
+    targetURL = "http://" + QString::fromStdString(device.getDeviceIPAddress()); 
 
     return 0;
 }
@@ -76,7 +62,7 @@ void MainWindow::on_connect_button_clicked()
     for (int i = ui->channelTable->rowCount(); i >= 0; i--){
         ui->channelTable->removeRow(i);
     }
-    QString url = targetURL+ "/lineup.json";
+    QString url = targetURL + "/lineup.json";
     std::string cppUrl = url.toStdString();
     const char *cStyleURL = cppUrl.c_str();
     std::string jsonString;

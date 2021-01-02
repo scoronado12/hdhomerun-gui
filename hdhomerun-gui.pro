@@ -19,11 +19,12 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     channel.cpp \
-    hdhomerun_device.cpp
+    hdhomerun_wrapper.cpp 
 
 HEADERS += \
-    headers/channel.h \
-    headers/mainwindow.h
+    headers/mainwindow.h \
+    headers/channel.h \ 
+    headers/hdhomerun_wrapper.h
 
 LIBS +=\
     -lcurl \
