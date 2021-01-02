@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string.h>
+#include <string>
 
 #ifndef CHANNEL_H
 #define CHANNEL_H
