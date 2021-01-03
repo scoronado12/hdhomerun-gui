@@ -4,6 +4,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <vector>
 #include <libhdhomerun/hdhomerun.h>
 #include "channel.h"
 
