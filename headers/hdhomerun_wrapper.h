@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
 #include <curl/curl.h>
+#include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <libhdhomerun/hdhomerun.h>
 #include "channel.h"
 

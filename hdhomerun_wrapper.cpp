@@ -55,15 +55,14 @@ HDHomeRun_Wrapper::HDHomeRun_Wrapper()
     }
     /* TODO Remove QJson elements */
 
+   QString json = QString::fromStdString(jsonString);
    QJsonDocument lineup = QJsonDocument::fromJson(json.toUtf8());
    QJsonArray lineupArr = lineup.array();
 
     for (int i = 0 ; i < lineupArr.count(); i++){
-        
-        std::cout << "[FOUND CHANNEL]" << lineupArr.at(i)["GuideNumber"].toString()
-            << lineupArr.at(i)["GuideName"].toString() << " " <<
-            lineupArr.at(i)["URL"].toString();
-
+        std::cout << "[FOUND CHANNEL]" << lineupArr.at(i)["GuideNumber"].toString().toStdString()
+            << lineupArr.at(i)["GuideName"].toString().toStdString() << " " <<
+            lineupArr.at(i)["URL"].toString().toStdString() + "\n";
         channels.push_back(Channel(lineupArr.at(i)["GuideName"].toString().toStdString(),
                                     atof(lineupArr.at(i)["GuideNumber"].toString().toStdString().c_str()),
                                     lineupArr.at(i)["URL"].toString().toStdString()));

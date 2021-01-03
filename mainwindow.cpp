@@ -60,33 +60,6 @@ void MainWindow::on_connect_button_clicked()
     for (int i = ui->channelTable->rowCount(); i >= 0; i--){
         ui->channelTable->removeRow(i);
     }
-/*  
-    QString url = targetURL + "/lineup.json";
-    std::string cppUrl = url.toStdString();
-    const char *cStyleURL = cppUrl.c_str();
-    std::string jsonString;
-    QString json;
-    CURL *curl_handle = curl_easy_init();
-    CURLcode response;
-
-    if(curl_handle){
-        qDebug() << cStyleURL << "\n";
-        curl_easy_setopt(curl_handle, CURLOPT_URL, cStyleURL);
-        curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteCallback);
-        curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, &jsonString);
-        response = curl_easy_perform(curl_handle);
-
-    } else {
-        qDebug() << "Curl Failed" << "\n";
-    }
-
-    json = QString::fromStdString(jsonString);
-    QJsonDocument lineup = QJsonDocument::fromJson(json.toUtf8());
-
-
-    QJsonArray lineupArr = lineup.array();
-    std::vector <Channel> channels;
-*/
     std::vector <Channel>  channels = auto_connect().getChannels();
     for (int i = 0 ; i < channels.size(); i++){
         
