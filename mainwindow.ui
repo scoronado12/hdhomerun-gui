@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>HDHomeRun</string>
+   <string>HDHomeRun Channel List</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="connect_button">
@@ -42,9 +42,9 @@
    <widget class="QTableWidget" name="channelTable">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>80</y>
-      <width>781</width>
+      <width>801</width>
       <height>481</height>
      </rect>
     </property>

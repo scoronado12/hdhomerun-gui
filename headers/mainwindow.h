@@ -1,7 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
 #include <QDebug>
-#include <curl/curl.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #include <string.h>
@@ -10,9 +9,8 @@
 #include <QJsonArray>
 #include <QTableWidget>
 #include <QMainWindow>
-#include <libhdhomerun/hdhomerun.h>
 #include "channel.h"
-
+#include "hdhomerun_wrapper.h"
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
@@ -34,7 +32,7 @@ public:
 private slots:
 
     void on_connect_button_clicked();
-    int auto_connect();
+    HDHomeRun_Wrapper auto_connect();
     void on_launchButton_clicked();
 
 
