@@ -36,7 +36,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Detect Tuner</string>
+     <string>Refresh</string>
     </property>
    </widget>
    <widget class="QTableWidget" name="channelTable">
