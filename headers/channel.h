@@ -12,6 +12,7 @@ public:
     std::string getChannelName() const;
     double getNumber() const;
     std::string getURL() const;
+    std::string toString();
 private:
     std::string stationId;
     double number;

@@ -12,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->channelTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->channelTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
+    qDebug() << "Starting Application\n";
+    on_connect_button_clicked(); /*  Gather data  automatically */
+
 }
 
 MainWindow::~MainWindow()
@@ -54,8 +57,6 @@ HDHomeRun_Wrapper MainWindow::auto_connect()
 
 void MainWindow::on_connect_button_clicked()
 {
-    qDebug() << "Clicked button\n";
-
 
     for (int i = ui->channelTable->rowCount(); i >= 0; i--){
         ui->channelTable->removeRow(i);
