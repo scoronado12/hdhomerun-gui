@@ -71,6 +71,11 @@ HDHomeRun_Wrapper::HDHomeRun_Wrapper()
 
 } 
 
+HDHomeRun_Wrapper::~HDHomeRun_Wrapper()
+{
+    
+}
+
 
 size_t HDHomeRun_Wrapper::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
