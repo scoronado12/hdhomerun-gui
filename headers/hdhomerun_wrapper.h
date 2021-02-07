@@ -16,6 +16,7 @@ class HDHomeRun_Wrapper
 {
 public:
     HDHomeRun_Wrapper();
+    ~HDHomeRun_Wrapper();
     std::string getDeviceBaseURL();
     std::string getDeviceId();
     std::string getDeviceIPAddress();
