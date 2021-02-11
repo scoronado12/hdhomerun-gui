@@ -75,3 +75,6 @@ Thumbs.db
 *.dll
 *.exe
 
+# VS Code
+.vscode
+
