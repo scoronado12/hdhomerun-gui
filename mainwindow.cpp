@@ -1,3 +1,5 @@
+#ifndef MAINWINDOW_CPP
+#define MAINWINDOW_CPP
 
 #include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
@@ -111,3 +113,4 @@ void MainWindow::on_launchButton_clicked()
     selectedUrl.clear();
 
 }
+#endif //MAINWINDOW_CPP
