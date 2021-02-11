@@ -64,7 +64,7 @@ void MainWindow::on_connect_button_clicked()
         ui->channelTable->removeRow(i);
     }
     std::vector <Channel>  channels = auto_connect().getChannels();
-    for (int i = 0 ; i < channels.size(); i++){
+    for (int i = 0 ; i < static_cast<int>(channels.size()) ; i++){
         
          ui->channelTable->insertRow(ui->channelTable->rowCount());
 
