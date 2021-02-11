@@ -1,3 +1,7 @@
+
+#ifndef HDHOMERUN_WRAPPER_H
+#define HDHOMERUN_WRAPPER_H
+
 #include <iostream>
 #include <string>
 #include <curl/curl.h>
@@ -9,8 +13,6 @@
 #include "channel.h"
 
 
-#ifndef HDHOMERUN_WRAPPER_H
-#define HDHOMERUN_WRAPPER_H
 
 class HDHomeRun_Wrapper
 {
