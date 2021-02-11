@@ -1,3 +1,7 @@
+
+#ifndef HDHOMERUN_WRAPPER_H
+#define HDHOMERUN_WRAPPER_H
+
 #include <iostream>
 #include <string>
 #include <curl/curl.h>
@@ -9,13 +13,12 @@
 #include "channel.h"
 
 
-#ifndef HDHOMERUN_WRAPPER_H
-#define HDHOMERUN_WRAPPER_H
 
 class HDHomeRun_Wrapper
 {
 public:
     HDHomeRun_Wrapper();
+    ~HDHomeRun_Wrapper();
     std::string getDeviceBaseURL();
     std::string getDeviceId();
     std::string getDeviceIPAddress();

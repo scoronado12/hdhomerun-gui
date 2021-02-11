@@ -1,3 +1,6 @@
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
 #include <iostream>
 #include <stdlib.h>
 #include <QDebug>
@@ -9,11 +12,10 @@
 #include <QJsonArray>
 #include <QTableWidget>
 #include <QMainWindow>
+
 #include "channel.h"
 #include "hdhomerun_wrapper.h"
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

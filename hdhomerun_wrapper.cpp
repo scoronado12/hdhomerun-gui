@@ -1,7 +1,8 @@
-#include "headers/hdhomerun_wrapper.h"
 
 #ifndef HDHOMERUN_WRAPPER_CPP
 #define HDHOMERUN_WRAPPER_CPP
+
+#include "headers/hdhomerun_wrapper.h"
 
 #define HOW_MANY 1
 
@@ -42,6 +43,7 @@ HDHomeRun_Wrapper::HDHomeRun_Wrapper()
     std::string jsonString;
     CURL *curl_handle = curl_easy_init();
     CURLcode response;
+    Q_UNUSED(response)
 
     if(curl_handle){
         curl_easy_setopt(curl_handle, CURLOPT_URL, cStyleURL);
@@ -70,6 +72,11 @@ HDHomeRun_Wrapper::HDHomeRun_Wrapper()
 
 
 } 
+
+HDHomeRun_Wrapper::~HDHomeRun_Wrapper()
+{
+    
+}
 
 
 size_t HDHomeRun_Wrapper::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
@@ -121,4 +128,4 @@ std::string HDHomeRun_Wrapper::toString()
         deviceAuth + "|\n";
 }
 
-#endif
+#endif //HDHOMERUN_WRAPPER_CPP

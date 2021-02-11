@@ -1,3 +1,5 @@
+#ifndef MAINWINDOW_CPP
+#define MAINWINDOW_CPP
 
 #include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
@@ -11,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->channelTable->verticalHeader()->hide();
     ui->channelTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->channelTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    qDebug() << "Starting Application\n";
+    on_connect_button_clicked(); /*  Gather data  automatically */
 
 }
 
@@ -54,14 +59,12 @@ HDHomeRun_Wrapper MainWindow::auto_connect()
 
 void MainWindow::on_connect_button_clicked()
 {
-    qDebug() << "Clicked button\n";
-
 
     for (int i = ui->channelTable->rowCount(); i >= 0; i--){
         ui->channelTable->removeRow(i);
     }
     std::vector <Channel>  channels = auto_connect().getChannels();
-    for (int i = 0 ; i < channels.size(); i++){
+    for (int i = 0 ; i < static_cast<int>(channels.size()) ; i++){
         
          ui->channelTable->insertRow(ui->channelTable->rowCount());
 
@@ -110,3 +113,4 @@ void MainWindow::on_launchButton_clicked()
     selectedUrl.clear();
 
 }
+#endif //MAINWINDOW_CPP

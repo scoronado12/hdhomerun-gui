@@ -9,6 +9,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.setFixedSize(w.size());
     w.show();
-    qDebug() << "Starting Application\n";
     return a.exec();
 }
