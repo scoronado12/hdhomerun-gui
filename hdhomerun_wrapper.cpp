@@ -32,8 +32,10 @@ HDHomeRun_Wrapper::HDHomeRun_Wrapper()
         + std::to_string(((unsigned int) (device[0].ip_addr >> 16) & 0x0FF))+ "." 
         + std::to_string(((unsigned int) (device[0].ip_addr >> 8) & 0x0FF))+ "." 
         + std::to_string(((unsigned int) (device[0].ip_addr >> 0) & 0x0FF)); 
+
     this->tunerCount = (int) device[0].tuner_count; 
-    this->isLegacy = device[0].is_legacy; this->deviceAuth = device[0].device_auth; 
+    this->isLegacy = device[0].is_legacy;
+    this->deviceAuth = device[0].device_auth; 
     this->deviceType = std::to_string(device[0].device_type); 
     this->deviceId = std::to_string((int) device[0].device_id);
 
