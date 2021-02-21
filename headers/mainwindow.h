@@ -25,24 +25,24 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-    static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
-    QString targetURL;
+	public:
+	    MainWindow(QWidget *parent = nullptr);
+	    ~MainWindow();
+	    static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
+	    QString targetURL;
 
-private slots:
+	private slots:
 
-    void on_connect_button_clicked();
-    HDHomeRun_Wrapper auto_connect();
-    void on_launchButton_clicked();
+	    void on_connect_button_clicked();
+	    HDHomeRun_Wrapper auto_connect();
+	    void on_launchButton_clicked();
 
 
-private:
-    Ui::MainWindow *ui;
-    QTableWidget channelTable;
+	private:
+	    Ui::MainWindow *ui;
+	    QTableWidget channelTable;
 
-    enum channelColumns{ NUMBER, NAME, URL};
+	    enum channelColumns{ NUMBER, NAME, URL};
 
 
 };
