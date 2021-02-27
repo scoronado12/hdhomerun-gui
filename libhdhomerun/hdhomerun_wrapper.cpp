@@ -2,7 +2,7 @@
 #ifndef HDHOMERUN_WRAPPER_CPP
 #define HDHOMERUN_WRAPPER_CPP
 
-#include "headers/hdhomerun_wrapper.h"
+#include "hdhomerun_wrapper.h"
 
 #define HOW_MANY 1
 

@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_CPP
 #define MAINWINDOW_CPP
 
-#include "headers/mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
