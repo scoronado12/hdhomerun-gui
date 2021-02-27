@@ -24,16 +24,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
-
-
-size_t MainWindow::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
-{
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
-}
-
 /**
  * @brief MainWindow::on_connect_button_clicked
  * This function makes an attempt to connect with one of the Tuners on the network.
