@@ -17,25 +17,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp \
-    channel.cpp \
-    hdhomerun_wrapper.cpp 
+    qt/mainwindow.cpp \
+    libhdhomerun/channel.cpp \
+    libhdhomerun/hdhomerun_wrapper.cpp 
 
 HEADERS += \
-    headers/mainwindow.h \
-    headers/channel.h \ 
-    headers/hdhomerun_wrapper.h
+    qt/mainwindow.h \
+    libhdhomerun/channel.h \ 
+    libhdhomerun/hdhomerun_wrapper.h
+
+INCLUDEPATH += \
+    $$PWD/libhdhomerun \
+    $$PWD/qt
 
 LIBS +=\
     -lcurl \
     -lhdhomerun
 
 FORMS += \
-    mainwindow.ui
+    qt/mainwindow.ui
 
 
 TRANSLATIONS += \
-    hdhomerun-gui_en_US.ts
+    qt/hdhomerun-gui_en_US.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

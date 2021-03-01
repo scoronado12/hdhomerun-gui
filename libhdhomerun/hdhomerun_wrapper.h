@@ -1,4 +1,3 @@
-
 #ifndef HDHOMERUN_WRAPPER_H
 #define HDHOMERUN_WRAPPER_H
 
