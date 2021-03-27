@@ -4,8 +4,6 @@
 #ifndef CHANNEL_H
 #define CHANNEL_H
 
-
-
 class Channel
 {
 public:
@@ -13,11 +11,13 @@ public:
     std::string getChannelName() const;
     double getNumber() const;
     std::string getURL() const;
+    std::string getNowPlaying() const;
     std::string toString();
 private:
     std::string stationId;
     double number;
     std::string url;
+    std::string nowPlaying;
 };
 
 #endif // CHANNEL_H
