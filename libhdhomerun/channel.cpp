@@ -1,5 +1,5 @@
 
-#include "headers/channel.h"
+#include "channel.h"
 
 #ifndef CHANNEL_CPP
 #define CHANNEL_CPP

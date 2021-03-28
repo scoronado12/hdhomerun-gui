@@ -1,9 +1,9 @@
 # hdhomerun-gui
 
 
-![Main View](assets/screenshot.png)
+![Main View](.github/screenshot.png)
 
-Third Party HD HomeRun Client made using QT. It is able to pull down Channel data via HTTP GET requests that are publically avaliable
+Third Party HD HomeRun Client made using qt. It is able to pull down Channel data via HTTP GET requests that are publically avaliable
 
 ## Why?
 

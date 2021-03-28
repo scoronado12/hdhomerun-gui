@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_CPP
 #define MAINWINDOW_CPP
 
-#include "headers/mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -22,16 +22,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-
-
-
-
-size_t MainWindow::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
-{
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
 }
 
 /**
