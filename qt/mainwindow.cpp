@@ -31,13 +31,14 @@ MainWindow::~MainWindow()
  * @returns 0 if success
  */
 
-HDHomeRun_Wrapper MainWindow::auto_connect()
+void MainWindow::auto_connect()
 {
+    if (device == nullptr)
+	delete device;
 
-    HDHomeRun_Wrapper device = HDHomeRun_Wrapper();
-    targetURL = "http://" + QString::fromStdString(device.getDeviceIPAddress()); 
+    device = new HDHomeRun_Wrapper();
+    targetURL = "http://" + QString::fromStdString(device->getDeviceIPAddress()); 
 
-    return device;
 }
 
 
@@ -53,7 +54,7 @@ void MainWindow::on_connect_button_clicked()
     for (int i = ui->channelTable->rowCount(); i >= 0; i--){
         ui->channelTable->removeRow(i);
     }
-    std::vector <Channel>  channels = auto_connect().getChannels();
+    std::vector<Channel> channels = device->getChannels();
     for (int i = 0 ; i < static_cast<int>(channels.size()) ; i++){
         
          ui->channelTable->insertRow(ui->channelTable->rowCount());

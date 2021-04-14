@@ -30,11 +30,11 @@ public:
     ~MainWindow();
     static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
     QString targetURL;
-
+    HDHomeRun_Wrapper *device;
 private slots:
 
     void on_connect_button_clicked();
-    HDHomeRun_Wrapper auto_connect();
+    void auto_connect();
     void on_launchButton_clicked();
 
 
