@@ -8,7 +8,7 @@
 
 HDHomeRun_Wrapper::HDHomeRun_Wrapper()
 {
-   
+    /*Find HD Home Run Device*/ 
     struct hdhomerun_discover_device_t device[1];
     int nDevice = hdhomerun_discover_find_devices_custom_v2(0, 
             HDHOMERUN_DEVICE_TYPE_TUNER,
@@ -27,19 +27,20 @@ HDHomeRun_Wrapper::HDHomeRun_Wrapper()
     {
         exit(1);
     }
+    /*Decode Attributes of Device */ 
     this->deviceBaseUrl = (std::string) device[0].base_url;
-    this->deviceIPAddress =  std::to_string((unsigned int) (device[0].ip_addr >> 24) & 0x0FF) +"."
-        + std::to_string(((unsigned int) (device[0].ip_addr >> 16) & 0x0FF))+ "." 
-        + std::to_string(((unsigned int) (device[0].ip_addr >> 8) & 0x0FF))+ "." 
-        + std::to_string(((unsigned int) (device[0].ip_addr >> 0) & 0x0FF)); 
+    this->deviceIPAddress =  std::to_string(static_cast<unsigned int>((device[0].ip_addr >> 24)) & 0x0FF) +"."
+        + std::to_string((static_cast<unsigned int>((device[0].ip_addr >> 16)) & 0x0FF))+ "." 
+        + std::to_string((static_cast<unsigned int>((device[0].ip_addr >> 8)) & 0x0FF))+ "." 
+        + std::to_string((static_cast<unsigned int>((device[0].ip_addr >> 0)) & 0x0FF)); 
 
-    this->tunerCount = (int) device[0].tuner_count; 
+    this->tunerCount = static_cast<int>(device[0].tuner_count); 
     this->isLegacy = device[0].is_legacy;
     this->deviceAuth = device[0].device_auth; 
     this->deviceType = std::to_string(device[0].device_type); 
-    this->deviceId = std::to_string((int) device[0].device_id);
+    this->deviceId = std::to_string(static_cast<int>(device[0].device_id));
 
-    /* Download Channel Data - Not very elegant TODO Cleanup */
+    /* Download Channel Data From Device */
     std::string lineupURL = this->deviceBaseUrl + "/lineup.json";
     const char *cStyleURL = lineupURL.c_str();
     std::string jsonString;
@@ -57,12 +58,11 @@ HDHomeRun_Wrapper::HDHomeRun_Wrapper()
         std::cout << "Curl Failed" << "\n";
         exit(1);
     }
-    /* TODO Remove QJson elements */
 
    QString json = QString::fromStdString(jsonString);
    QJsonDocument lineup = QJsonDocument::fromJson(json.toUtf8());
    QJsonArray lineupArr = lineup.array();
-
+   /* Log found channels*/
     for (int i = 0 ; i < lineupArr.count(); i++){
         std::cout << "[FOUND CHANNEL]" << lineupArr.at(i)["GuideNumber"].toString().toStdString()
             << lineupArr.at(i)["GuideName"].toString().toStdString() << " " <<
@@ -71,7 +71,6 @@ HDHomeRun_Wrapper::HDHomeRun_Wrapper()
                                     atof(lineupArr.at(i)["GuideNumber"].toString().toStdString().c_str()),
                                     lineupArr.at(i)["URL"].toString().toStdString()));
     }
-
 
 } 
 
