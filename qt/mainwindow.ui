@@ -44,7 +44,7 @@
      <rect>
       <x>0</x>
       <y>80</y>
-      <width>801</width>
+      <width>421</width>
       <height>481</height>
      </rect>
     </property>
@@ -92,9 +92,46 @@
      <string>View Channel</string>
     </property>
    </widget>
+   <widget class="QLabel" name="preview_label">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>140</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Preview</string>
+    </property>
+   </widget>
+   <widget class="Phonon::VideoPlayer" name="player">
+    <property name="geometry">
+     <rect>
+      <x>429</x>
+      <y>200</y>
+      <width>381</width>
+      <height>301</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Phonon::VideoPlayer</class>
+   <extends>QWidget</extends>
+   <header location="global">phonon/videoplayer.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

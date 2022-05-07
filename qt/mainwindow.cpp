@@ -17,6 +17,10 @@ MainWindow::MainWindow(QWidget *parent)
     qDebug() << "Starting Application\n";
     on_connect_button_clicked(); /*  Gather data  automatically */
 
+
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -103,4 +107,17 @@ void MainWindow::on_launchButton_clicked()
     selectedUrl.clear();
 
 }
+
+void MainWindow::on_row_select()
+{
+    qDebug() << "Selected Row\n";
+
+    QList<QTableWidgetItem *> qi = ui->channelTable->selectedItems();
+    std::string selectedUrl = qi.at(URL)->text().toStdString();
+    
+
+
+}
+
+
 #endif //MAINWINDOW_CPP

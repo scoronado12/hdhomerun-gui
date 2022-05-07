@@ -12,6 +12,7 @@
 #include <QJsonArray>
 #include <QTableWidget>
 #include <QMainWindow>
+#include <phonon/VideoPlayer>
 
 #include "channel.h"
 #include "hdhomerun_wrapper.h"
@@ -28,18 +29,19 @@ class MainWindow : public QMainWindow
 	public:
 	    MainWindow(QWidget *parent = nullptr);
 	    ~MainWindow();
-	    static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
 	    QString targetURL;
-
+	    Phonon::VideoPlayer *player;
 	private slots:
 
 	    void on_connect_button_clicked();
 	    HDHomeRun_Wrapper auto_connect();
 	    void on_launchButton_clicked();
-
+	    void on_row_select();
 
 	private:
 	    Ui::MainWindow *ui;
+	    static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
+
 	    QTableWidget channelTable;
 
 	    enum channelColumns{ NUMBER, NAME, URL};
