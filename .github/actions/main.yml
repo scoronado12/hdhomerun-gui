@@ -1,0 +1,11 @@
+jobs:
+  setup_deps:
+    runs-on: ubuntu-latest
+    steps:
+    - id: Refresh Packages
+    - run: apt-get update && apt-get upgrade -y
+    - id: Install Libraries
+    - run: apt-get install qtbase5-dev qt5-qmake build-essential libhdhomerun-dev -y
+    - id: Build 
+    - run: qmake && make
+      
