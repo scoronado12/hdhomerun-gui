@@ -1,5 +1,13 @@
+name: Build App CI
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
 jobs:
-  setup_deps:
+  build:
     runs-on: ubuntu-latest
     steps:
     - id: Refresh Packages
