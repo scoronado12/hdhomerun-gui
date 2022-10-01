@@ -1,6 +1,6 @@
 name: Build App CI
 
-on: [push]
+on: [push, fork, pull_request]
 
 jobs:
   build:
