@@ -1,0 +1,17 @@
+name: Build App CI
+
+on: [push, fork, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+           
+      - name: Install Libraries
+        run: sudo apt-get install qtbase5-dev qt5-qmake build-essential libcurl4-gnutls-dev libhdhomerun-dev -y
+      
+      - name: Build 
+        run: qmake && make
+        
