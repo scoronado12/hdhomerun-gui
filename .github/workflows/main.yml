@@ -1,15 +1,14 @@
 name: Build App CI
 
-on: [push]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - id: Refresh Packages
+    - uses: actions/checkout@v3
+    - name: Refresh Packages
     - run: apt-get update && apt-get upgrade -y
-    - id: Install Libraries
+    - name: Install Libraries
     - run: apt-get install qtbase5-dev qt5-qmake build-essential libhdhomerun-dev -y
-    - id: Build 
+    - name: Build 
     - run: qmake && make
       
